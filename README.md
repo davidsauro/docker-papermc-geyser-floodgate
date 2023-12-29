@@ -118,9 +118,11 @@ There is one change required in `server.properties` for Bedrock support to funct
 # Technical
 This project *does **NOT** redistribute the Minecraft server files*. Instead, the (very small) script that is inside of the image, `papermc.sh`, downloads these files from their official sources during installation.
 
-**PLEASE NOTE:** This is an unofficial project. I did not create PaperMC. [This is the official PaperMC website.](https://papermc.io/)
+**PLEASE NOTE:** 
+This is an unofficial project.
 
-I also did not create Geyser or Floodgate [This is the official GeyserMC website](https://geysermc.org/)
+I did not create PaperMC. [This is the official PaperMC website.](https://papermc.io/)
+I did not create Geyser or Floodgate [This is the official GeyserMC website](https://geysermc.org/)
 
 ## Project Pages
 - [GitHub page](https://github.com/davidsauro/docker-papermc-geyser-floodgate.git).
