@@ -1,13 +1,14 @@
 ## Forked From:
-- [GitHub page](https://github.com/smcbride-ca/papermc-geyser-docker).
+- (https://github.com/smcbride-ca/papermc-geyser-docker).
 
-TODO: Cleanup this doc it is a work in progress
+## Why Fork?
+Originally the above image was a great starting point but the shell script was a bit out of date and the jar files specified to be downloaded were returning 404s. This was also not setup to run in a kubernetes cluster which I am trying (my brain hurts) to get working. There is a work in progress kubernetes.yaml file in this repo that you SHOULD be able to deploy to a cluster, but I make no promises of it working at this time. I am still trying to figure some of this out.
 
 # PaperMC-Geyser-Floodgate
 This is a Linux Docker image for the PaperMC Minecraft server, GeyserMC, and Floodgate.
 
 PaperMC is an optimized Minecraft server with plugin support (Bukkit, Spigot, Sponge, etc.).
-This image provides a PaperMC server with the Geyser and Floodgate plugins, which allow Bedrock players to join a Java server.
+This image provides a PaperMC server with the Geyser and Floodgate plugins, which allow Bedrock players to join a Java server. Floodgate allows 
 # Install Docker
 It is assumed that the user has already acquired a working Docker installation. If that is not the case, go do that and come back here when you're done. [Docker Install Guide](https://docs.docker.com/get-docker/)
 
@@ -17,13 +18,15 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh ./get-docker.sh --dry-run
 ```
 
-# Building
-As this image isn't available through Docker Hub, you need to build it yourself. This is a very simple process.
+# Pull / Build
+This image is available here: `docker pull etharis/minecraft:latest`
+
+If you want to build it yourself. This is a very simple process.
 
 ```shell
-git clone https://github.com/smcbride-ca/papermc-geyser-docker
+git clone https://github.com/davidsauro/docker-papermc-geyser-floodgate.git
 cd papermc-geyser-docker
-docker build -t smcbride/papermc-geyser-floodgate .
+docker build . -t etharis/minecraft:latest
 ```
 ## Command
 ### Important Note
@@ -31,7 +34,7 @@ docker build -t smcbride/papermc-geyser-floodgate .
 
 With this image, you can create a new PaperMC Minecraft server with one command (note that running said command indicates agreement to the Minecraft EULA). Here is an example:
 
-```docker run -p 25565:25565 -p 19132:19132/udp smcbride/papermc-geyser-floodgate```
+```docker run -p 25565:25565 -p 19132:19132/udp etharis/minecraft```
 
 While this command will work just fine in many cases, it is only the bare minimum required to start a functional server and can be vastly improved by specifying some...
 ## Options
@@ -118,4 +121,5 @@ This project *does **NOT** redistribute the Minecraft server files*. Instead, th
 **PLEASE NOTE:** This is an unofficial project. I did not create PaperMC. [This is the official PaperMC website.](https://papermc.io/)
 
 ## Project Pages
-- [GitHub page](https://github.com/smcbride-ca/papermc-geyser-docker).
+- [GitHub page](https://github.com/davidsauro/docker-papermc-geyser-floodgate.git).
+
