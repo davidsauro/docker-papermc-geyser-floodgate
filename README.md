@@ -122,6 +122,7 @@ This project *does **NOT** redistribute the Minecraft server files*. Instead, th
 This is an unofficial project.
 
 I did not create PaperMC. [This is the official PaperMC website.](https://papermc.io/)
+
 I did not create Geyser or Floodgate [This is the official GeyserMC website](https://geysermc.org/)
 
 ## Project Pages
