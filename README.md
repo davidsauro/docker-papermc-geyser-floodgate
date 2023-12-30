@@ -2,7 +2,7 @@
 - (https://github.com/smcbride-ca/papermc-geyser-docker).
 
 ## Why Fork?
-Originally the above image was a great starting point but the shell script was a bit out of date and the jar files specified to be downloaded were returning 404s. This was also not setup to run in a kubernetes cluster which I am trying (my brain hurts) to get working. There is a work in progress kubernetes.yaml file in this repo that you SHOULD be able to deploy to a cluster, but I make no promises of it working at this time. I am still trying to figure some of this out.
+Originally the above image was a great starting point but the shell script was a bit out of date and the jar files specified to be downloaded were returning 404s. This was also not setup to run in a kubernetes cluster which I am trying (my brain hurts) to get working. There is a work in progress kubernetes.yaml file in this repo that you SHOULD be able to deploy to a cluster, but I make no promises of it working at this time. I am still trying to figure some of this out. See the Kubernetes section for more info
 
 # PaperMC-Geyser-Floodgate
 This is a Linux Docker image for the PaperMC Minecraft server, GeyserMC, and Floodgate.
@@ -117,6 +117,16 @@ There is one change required in `server.properties` for Bedrock support to funct
 - Please note that this will allow users with chat signing disabled to join your world.
 # Technical
 This project *does **NOT** redistribute the Minecraft server files*. Instead, the (very small) script that is inside of the image, `papermc.sh`, downloads these files from their official sources during installation.
+
+## Kubernetes
+With this config, (see kubernetes.yaml) I can't get the traffic to forward to the kuberneties cluser IP, so I need
+to do some port forwarding, but as far as I can tell kubectl doesn't support UDP forwarding for 
+some stupid reason so I had to install a plugin to accomplish it
+here is the command I used -  kubectl relay --address 0.0.0.0 pod/mcs-0 19132:19132
+
+The plugin I used is from [here](https://github.com/knight42/krelay) installed via [Krew](https://krew.sigs.k8s.io/)
+
+This probably has something to do with the fact that I am using MiniKube on an M1 Mac running Linux
 
 **PLEASE NOTE:** 
 This is an unofficial project.

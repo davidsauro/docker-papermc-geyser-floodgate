@@ -17,6 +17,10 @@ RUN apt-get update \
 # Start script
 CMD ["sh", "./papermc.sh"]
 
+COPY geyeserMCConfig.yaml /papermc/plugins/Geyser-Spigot/config.yaml
+
+#kubectl exec --stdin --tty shell-demo -- /bin/bash
+
 # Container setup
 EXPOSE 25565/tcp
 EXPOSE 19132/udp
