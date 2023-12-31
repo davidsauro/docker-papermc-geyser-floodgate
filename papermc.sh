@@ -1,9 +1,9 @@
 #!/bin/bash
 
-
-echo trying to make directory /papermc/plugins/Geyser-Spigot
-#make config dir for Geyser
+# Make make Geyser-Spigot directory for config file
 mkdir -p /papermc/plugins/Geyser-Spigot/
+
+# Move config file into the plugins folder for Geyser
 mv ./geyeserMCConfig.yml /papermc/plugins/Geyser-Spigot/config.yml
 
 # Enter server directory
@@ -51,8 +51,11 @@ fi
 
 # Download Geyser and Floodgate
 wget -O Geyser-Spigot.jar https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot
-mv ./Geyser-Spigot.jar ./plugins
 wget -O floodgate-spigot.jar https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot
+
+# Put the downloaded Geyser-Spigot JAR file into the plugins directory
+mv ./Geyser-Spigot.jar ./plugins
+# Put the downloaded floodgate-spigot JAR file into the plugins directory
 mv ./floodgate-spigot.jar ./plugins
 
 # Start server
