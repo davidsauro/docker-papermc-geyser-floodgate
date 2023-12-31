@@ -1,10 +1,13 @@
 #!/bin/bash
 
+
+echo trying to make directory /papermc/plugins/Geyser-Spigot
+#make config dir for Geyser
+mkdir -p /papermc/plugins/Geyser-Spigot/
+mv ./geyeserMCConfig.yml /papermc/plugins/Geyser-Spigot/config.yml
+
 # Enter server directory
 cd papermc
-
-#make config dir for Geyser
-mkdir ./plugins/Geyser-Spigot/
 
 # Get version information and build download URL and jar name
 URL=https://papermc.io/api/v2/projects/paper

@@ -14,7 +14,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /papermc
 
-COPY ./geyeserMCConfig.yaml /papermc/plugins/Geyser-Spigot/config.yaml
+#get the config file into the root
+COPY ./geyeserMCConfig.yaml .
 
 # Start script
 CMD ["sh", "./papermc.sh"]

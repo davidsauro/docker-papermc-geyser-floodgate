@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: main
-          image: etharis/minecraft
+          image: etharis/minecraft:latest
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -56,15 +56,6 @@ spec:
       - name: papermc
         persistentVolumeClaim:
           claimName: papermc
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 8Gi
 ---
 apiVersion: v1
 kind: Service
