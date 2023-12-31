@@ -14,10 +14,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /papermc
 
+COPY ./geyeserMCConfig.yaml /papermc/plugins/Geyser-Spigot/config.yaml
+
 # Start script
 CMD ["sh", "./papermc.sh"]
-
-COPY geyeserMCConfig.yaml /papermc/plugins/Geyser-Spigot/config.yaml
 
 #kubectl exec --stdin --tty shell-demo -- /bin/bash
 
