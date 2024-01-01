@@ -5,6 +5,7 @@ mkdir -p /papermc/plugins/Geyser-Spigot/
 
 # Move config file into the plugins folder for Geyser
 mv ./geyeserMCConfig.yml /papermc/plugins/Geyser-Spigot/config.yml
+mv ./server.properties /papermc/server.properties
 
 # Enter server directory
 cd papermc

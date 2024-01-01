@@ -8,6 +8,7 @@ ENV MC_VERSION="latest" \
     JAVA_OPTS=""
 
 COPY papermc.sh .
+
 RUN apt-get update \
     && apt-get install -y wget \
     && apt-get install -y jq \
@@ -15,7 +16,8 @@ RUN apt-get update \
     && mkdir /papermc
 
 #get the config file into the root
-COPY ./geyeserMCConfig.yaml .
+COPY ./geyeserMCConfig.yml .
+COPY ./server.properties .
 
 # Start script
 CMD ["sh", "./papermc.sh"]
