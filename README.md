@@ -8,7 +8,7 @@ Originally the above image was a great starting point but the shell script was a
 This is a Linux Docker image for the PaperMC Minecraft server, GeyserMC, and Floodgate.
 
 PaperMC is an optimized Minecraft server with plugin support (Bukkit, Spigot, Sponge, etc.).
-This image provides a PaperMC server with the Geyser and Floodgate plugins, which allow Bedrock players to join a Java server. Floodgate allows 
+This image provides a PaperMC server with the Geyser and Floodgate plugins, which allow Bedrock players to join a Java server. Floodgate allows a user to log in with their Microsoft Account 
 # Install Docker
 It is assumed that the user has already acquired a working Docker installation. If that is not the case, go do that and come back here when you're done. [Docker Install Guide](https://docs.docker.com/get-docker/)
 
@@ -126,7 +126,7 @@ here is the command I used -  kubectl relay --address 0.0.0.0 pod/mcs-0 19132:19
 
 The plugin I used is from [here](https://github.com/knight42/krelay) installed via [Krew](https://krew.sigs.k8s.io/)
 
-This probably has something to do with the fact that I am using MiniKube on an M1 Mac running Linux
+This probably has something to do with the fact that I am using MiniKube on an M1 Mac running Linux. I haven't tested this in a cloud provider yet, but I plan on doing that soon.
 
 **PLEASE NOTE:** 
 This is an unofficial project.
@@ -137,4 +137,3 @@ I did not create Geyser or Floodgate [This is the official GeyserMC website](htt
 
 ## Project Pages
 - [GitHub page](https://github.com/davidsauro/docker-papermc-geyser-floodgate.git).
-

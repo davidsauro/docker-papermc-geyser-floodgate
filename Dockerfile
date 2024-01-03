@@ -22,8 +22,6 @@ COPY ./server.properties .
 # Start script
 CMD ["sh", "./papermc.sh"]
 
-#kubectl exec --stdin --tty shell-demo -- /bin/bash
-
 # Container setup
 EXPOSE 25565/tcp
 EXPOSE 19132/udp
