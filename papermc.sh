@@ -11,37 +11,33 @@ mv ./server.properties /papermc/server.properties
 cd papermc
 
 # Get version information and build download URL and jar name
-URL=https://papermc.io/api/v2/projects/paper
-if [ ${MC_VERSION} = latest ]
-then
-  # Get the latest MC version
-  MC_VERSION=$(wget -qO - $URL | jq -r '.versions[-1]') # "-r" is needed because the output has quotes otherwise
+#!/usr/bin/env sh
+
+PROJECT="paper"
+MINECRAFT_VERSION="1.21.4"
+
+LATEST_BUILD=$(curl -s https://api.papermc.io/v2/projects/${PROJECT}/versions/${MINECRAFT_VERSION}/builds | \
+    jq -r '.builds | map(select(.channel == "default") | .build) | .[-1]')
+
+if [ "$LATEST_BUILD" != "null" ]; then
+    JAR_NAME=${PROJECT}-${MINECRAFT_VERSION}-${LATEST_BUILD}.jar
+    PAPERMC_URL="https://api.papermc.io/v2/projects/${PROJECT}/versions/${MINECRAFT_VERSION}/builds/${LATEST_BUILD}/downloads/${JAR_NAME}"
+
+    # Download the latest Paper version
+    curl -o server.jar $PAPERMC_URL
+    echo "Download completed"
+else
+    echo "No stable build for version $MINECRAFT_VERSION found :("
 fi
-URL=${URL}/versions/${MC_VERSION}
-if [ ${PAPER_BUILD} = latest ]
-then
-  # Get the latest build
-  PAPER_BUILD=$(wget -qO - $URL | jq '.builds[-1]')
-fi
-JAR_NAME=paper-${MC_VERSION}-${PAPER_BUILD}.jar
-URL=${URL}/builds/${PAPER_BUILD}/downloads/${JAR_NAME}
 
 # Update if necessary
-if [ ! -e ${JAR_NAME} ]
+# If this is the first run, accept the EULA
+if [ ! -e eula.txt ]
 then
-  # Remove old server jar(s)
-  rm -f *.jar
-  # Download new server jar
-  wget ${URL} -O ${JAR_NAME}
-  
-  # If this is the first run, accept the EULA
-  if [ ! -e eula.txt ]
-  then
-    # Run the server once to generate eula.txt
-    java -jar ${JAR_NAME}
-    # Edit eula.txt to accept the EULA
-    sed -i 's/false/true/g' eula.txt
-  fi
+  # Run the server once to generate eula.txt
+  java -jar server.jar
+  # Edit eula.txt to accept the EULA
+  sed -i 's/false/true/g' eula.txt
 fi
 
 # Add RAM options to Java options if necessary
@@ -60,6 +56,6 @@ mv ./Geyser-Spigot.jar ./plugins
 mv ./floodgate-spigot.jar ./plugins
 
 # Start server
-exec java -server ${JAVA_OPTS} -jar ${JAR_NAME} nogui
+exec java -server ${JAVA_OPTS} -jar server.jar nogui
 
 #kubectl exec --stdin --tty mcs-0 -- bin/bash get a bash to the pod
